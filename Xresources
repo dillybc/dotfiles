@@ -1,0 +1,10 @@
+! Rxvt*termName: rxvt
+! Rxvt.font: xft:Inconsolata\\-g:size=10
+! do not scroll with output
+Rxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+Rxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+Rxvt*scrollTtyKeypress: true
