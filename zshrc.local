@@ -2,11 +2,11 @@ unsetopt beep
 setopt HIST_IGNORE_DUPS
 bindkey -e
 autoload -U promptinit
-autoload -U compinit
 autoload -U zcalc
+
 alias vi=vim
+
 promptinit
-compinit
 zstyle ':prompt:grml:*:items:user' pre '%F{green}'
 zstyle ':prompt:grml:*:items:root' pre '%F{red}'
 if [[ -f ~/.dir_colors ]]; then
@@ -16,18 +16,14 @@ elif [[ -f /etc/DIR_COLORS ]]; then
 else
    eval $(dircolors)
 fi
+
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 source /usr/share/doc/pkgfile/command-not-found.zsh
-export VSLICKXNOPLUSNEWMSG=1
 export ZSH=1
 if [ "$TERM" = "xterm" ]; then
     TERM="xterm-256color" ;
 fi
-zstyle ‘:completion:*’ verbose yes
-zstyle ‘:completion:*:descriptions’ format ‘%B%d%b’
-zstyle ‘:completion:*:messages’ format ‘%d’
-zstyle ‘:completion:*:warnings’ format ‘No matches for: %d’
-zstyle ‘:completion:*’ group-name ”
 
 zcalch () { print $(( [#16] ans = ${@:-ans} )) } # hexadecimal
 zcalcd () { print $(( [#10] ans = ${@:-ans} )) } # decimal
@@ -35,3 +31,18 @@ zcalco () { print $(( [#8] ans = ${@:-ans} )) }  # octal
 zcalcb () { print $(( [#2] ans = ${@:-ans} )) }  # binary
 
 zcalcasc () { print $(( [#16] ans = ##${@:-ans} )) } # the ascii value of a single character
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored _approximate _prefix
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list '' 'r:|[._-]=** r:|=**' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+zstyle ':completion:*' max-errors 1
+zstyle ':completion:*' substitute 1
+zstyle :compinstall filename '/nfshomes/barry/.zshrc.local'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
